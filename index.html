@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نمایشگاه پرگار - هفتمین دوره</title>
+    <link href="https://cdn.jsdelivr.net/npm/vazir-font@27.2.0/dist/font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', sans-serif;
+        }
+        body {
+            background: linear-gradient(to bottom, #f5f5f5, #e6e1f5);
+            color: #333;
+            direction: rtl;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar a {
+            color: #6A0DAD;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .navbar a:hover {
+            color: #2E1A47;
+            transform: scale(1.1);
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('images/layered-peaks-haikei.svg') no-repeat center bottom / cover;
+            color: #fff;
+            overflow: hidden;
+        }
+        .hero-content {
+            margin-bottom: 200px;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #2E1A47;
+            animation: fadeInScale 1.5s ease-in;
+        }
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #2E1A47;
+            animation: fadeInScale 2s ease-in;
+        }
+        .btn {
+            background: #6A0DAD;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInScale 2.5s ease-in;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(106, 13, 173, 0.5);
+        }
+
+        .section {
+            padding: 50px;
+            text-align: center;
+            background: #fff;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.8s ease-in-out;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #2E1A47;
+        }
+        .section p {
+            line-height: 2.2;
+        }
+        .about {
+            text-align: right;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 30px;
+        }
+        .about img {
+            max-width: 40%;
+            border-radius: 10px;
+        }
+        .about .content {
+            flex: 1;
+            text-align: right;
+        }
+        .about .social-icons {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: #6A0DAD;
+            font-size: 20px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icons a:hover {
+            color: #2E1A47;
+            transform: scale(1.2);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .gallery-grid .gallery-item {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+        .gallery-grid .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .gallery-grid .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        .popup-content img {
+            max-width: 100%;
+            max-height: 60vh;
+            border-radius: 10px;
+        }
+        .popup-content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #2E1A47;
+            cursor: pointer;
+        }
+        .popup-content .prev, .popup-content .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: #2E1A47;
+            cursor: pointer;
+        }
+        .popup-content .prev { left: 20px; }
+        .popup-content .next { right: 20px; }
+        .news-item {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+        .news-item p {
+            line-height: 2.2;
+        }
+        .schedule-table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #6A0DAD;
+            padding: 10px;
+            text-align: center;
+        }
+        .schedule-table th {
+            background: #6A0DAD;
+            color: #fff;
+        }
+        .map iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background: linear-gradient(to bottom, #2E1A47, #3E2A5A);
+            padding: 40px;
+            text-align: center;
+            color: #fff;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .footer .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer .contact-info {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .footer h5 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .footer p {
+            font-size: 16px;
+            line-height: 2.2;
+        }
+        .footer .copyright {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 18px; }
+            .section { padding: 30px; }
+            .popup-content { max-width: 90%; }
+            .about-content { flex-direction: column; text-align: center; }
+            .about img { max-width: 80%; margin-bottom: 20px; }
+            .footer .footer-content { flex-direction: column; align-items: center; }
+            .footer .contact-info { text-align: center; }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+
+    <nav class="navbar">
+        <a href="#home">خانه</a>
+        <a href="#about">درباره</a>
+        <a href="#gallery">گالری</a>
+        <a href="#schedule">برنامه</a>
+        <a href="#news">اخبار</a>
+        <a href="#contact">تماس</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>نمایشگاه پرگار - هفتمین دوره</h1>
+            <p>نمایش دستاوردهای خلاقانه دانش‌آموزان مدرسه نگاه نو</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="about" class="section about">
+        <h2>درباره نمایشگاه پرگار</h2>
+        <div class="about-content">
+            <div class="content">
+                <p>نمایشگاه پرگار، که اکنون به هفتمین دوره خود رسیده است، یکی از مهم‌ترین رویدادهای فرهنگی و آموزشی مجتمع آموزشی نگاه نو به شمار می‌رود. این نمایشگاه با هدف نمایش خلاقیت، نوآوری و استعدادهای دانش‌آموزان دوره اول برگزار می‌شود و فرصتی است تا دانش‌آموزان بتوانند دستاوردهای خود را در زمینه‌های مختلف از جمله هنر، علم، فناوری و کاردستی به نمایش بگذارند.</p>
+                <p>هر ساله، دانش‌آموزان با هدایت معلمان و مربیان خود، پروژه‌هایی خلاقانه و منحصربه‌فرد خلق می‌کنند که نه تنها نشان‌دهنده مهارت‌های آن‌هاست، بلکه بیانگر نگاه نو و ذهن خلاقشان به مسائل مختلف است. نمایشگاه پرگار از سال 1397 آغاز شده و هر سال با استقبال بی‌نظیر والدین، دانش‌آموزان و جامعه آموزشی روبه‌رو شده است.</p>
+                <p>در این دوره، ما شاهد مجموعه‌ای متنوع از آثار هستیم: از نقاشی‌ها و کاردستی‌های هنری گرفته تا پروژه‌های علمی و اختراعات کوچک. هدف ما از برگزاری این رویداد، تشویق دانش‌آموزان به تفکر خلاق، تقویت اعتمادبه‌نفس آن‌ها و ایجاد فضایی برای تبادل ایده‌ها میان دانش‌آموزان و بازدیدکنندگان است.</p>
+                <p>ما در مدرسه نگاه نو به دنبال آن هستیم که با برگزاری چنین رویدادهایی، نه تنها استعدادهای دانش‌آموزان را شکوفا کنیم، بلکه آن‌ها را برای آینده‌ای روشن و موفق آماده کنیم. اگر مایل به کسب اطلاعات بیشتر هستید، می‌توانید از طریق شبکه‌های اجتماعی با ما در ارتباط باشید:</p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/NegaahenoSchool"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/NegaahenoSchool"><i class="fab fa-telegram-plane"></i></a>
+                </div>
+            </div>
+            <img src="images/Pargar.jpg" alt="مدرسه نگاه نو">
+        </div>
+    </section>
+
+    <section id="gallery" class="section gallery">
+        <h2>گالری آثار</h2>
+        <div class="gallery-grid" id="gallery-grid">
+            <div class="gallery-item" data-id="1">
+                <img src="images/Photo1.jpg" alt="فوتو 1">
+            </div>
+            <div class="gallery-item" data-id="2">
+                <img src="images/Photo2.jpg" alt="فوتو 2">
+            </div>
+            <div class="gallery-item" data-id="3">
+                <img src="images/Photo3.jpg" alt="فوتو 3">
+            </div>
+            <div class="gallery-item" data-id="4">
+                <img src="images/Photo4.jpg" alt="فوتو 4">
+            </div>
+            <div class="gallery-item" data-id="5">
+                <img src="images/Photo5.jpg" alt="فوتو 5">
+            </div>
+            <div class="gallery-item" data-id="6">
+                <img src="images/Photo6.jpg" alt="فوتو 6">
+            </div>
+            <div class="gallery-item" data-id="7">
+                <img src="images/Photo7.jpg" alt="فوتو 7">
+            </div>
+            <div class="gallery-item" data-id="8">
+                <img src="images/Photo8.jpg" alt="فوتو 8">
+            </div>
+        </div>
+    </section>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">×</span>
+            <span class="prev" onclick="changeImage(-1)">❮</span>
+            <img id="popup-image" src="" alt="Gallery Image">
+            <span class="next" onclick="changeImage(1)">❯</span>
+        </div>
+    </div>
+
+    <section id="schedule" class="section schedule">
+        <h2>برنامه نمایشگاه</h2>
+        <table class="schedule-table">
+            <tr>
+                <th>روز</th>
+                <th>تاریخ</th>
+                <th>ساعات بازدید</th>
+                <th>رویداد ویژه</th>
+            </tr>
+            <tr>
+                <td>شنبه</td>
+                <td>13 اردیبهشت 1404</td>
+                <td>9:00 - 17:00</td>
+                <td>مراسم افتتاحیه</td>
+            </tr>
+            <tr>
+                <td>یک‌شنبه</td>
+                <td>14 اردیبهشت 1404</td>
+                <td>9:00 - 17:00</td>
+                <td>کارگاه خلاقیت</td>
+            </tr>
+            <tr>
+                <td>دوشنبه</td>
+                <td>15 اردیبهشت 1404</td>
+                <td>9:00 - 15:00</td>
+                <td>مراسم اختتامیه</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="news" class="section news">
+        <h2>اخبار و به‌روزرسانی‌ها</h2>
+        <div id="news-items">
+            <div class="news-item">
+                <h3>افتتاحیه نمایشگاه</h3>
+                <p>نمایشگاه پرگار با مراسم افتتاحیه‌ای باشکوه در روز یک‌شنبه آغاز شد.</p>
+            </div>
+            <div class="news-item">
+                <h3>کارگاه خلاقیت</h3>
+                <p>روز دوشنبه کارگاه خلاقیت برای دانش‌آموزان برگزار می‌شود.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <h2>تماس با ما</h2>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537363153167!3d-37.81627977975195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d9c2b9c8b7c!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1631234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h5>دبیرستان دوره اول</h5>
+                <p>تلفن: 44002078 - 44002077</p>
+                <p>آدرس: بلوار فردوس، خیابان رامین جنوبی، کوچه سروی، پلاک 16</p>
+                <p>ایمیل: info@negaaheno.ir</p>
+            </div>
+            <div class="contact-info">
+                <h5>دبیرستان دوره دوم</h5>
+                <p>تلفن: 44020395 - 44020648</p>
+                <p>آدرس: آیت‌الله کاشانی، خیابان سلیمی جهرمی، کوچه نسترن شرقی، پلاک 5</p>
+                <p>ایمیل: info@negaaheno.ir</p>
+            </div>
+        </div>
+        <p class="copyright">© 1404 نمایشگاه پرگار - تمامی حقوق محفوظ است.</p>
+    </footer>
+
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 30, density: { enable: true, value_area: 800 } },
+                color: { value: "#6A0DAD" },
+                shape: { type: "circle" },
+                opacity: { value: 0.2, random: true },
+                size: { value: 3, random: true },
+                move: { enable: true, speed: 0.5, direction: "none", random: true }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            }
+        });
+
+        document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < window.innerHeight * 0.8) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+
+        const galleryData = [
+            { id: 1, src: "images/Photo1.jpg", alt: "فوتو 1" },
+            { id: 2, src: "images/Photo2.jpg", alt: "فوتو 2" },
+            { id: 3, src: "images/Photo3.jpg", alt: "فوتو 3" },
+            { id: 4, src: "images/Photo4.jpg", alt: "فوتو 4" },
+            { id: 5, src: "images/Photo5.jpg", alt: "فوتو 5" },
+            { id: 6, src: "images/Photo6.jpg", alt: "فوتو 6" },
+            { id: 7, src: "images/Photo7.jpg", alt: "فوتو 7" },
+            { id: 8, src: "images/Photo8.jpg", alt: "فوتو 8" }
+        ];
+
+        let currentImageIndex = 0;
+        function openPopup(id) {
+            currentImageIndex = galleryData.findIndex(item => item.id === id);
+            const popup = document.getElementById('popup');
+            const popupImage = document.getElementById('popup-image');
+            popupImage.src = galleryData[currentImageIndex].src;
+            popupImage.alt = galleryData[currentImageIndex].alt;
+            popup.style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = galleryData.length - 1;
+            if (currentImageIndex >= galleryData.length) currentImageIndex = 0;
+            const popupImage = document.getElementById('popup-image');
+            popupImage.src = galleryData[currentImageIndex].src;
+            popupImage.alt = galleryData[currentImageIndex].alt;
+        }
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => openPopup(parseInt(item.dataset.id)));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="نمایشگاه پرگار - هفتمین دوره، نمایش دستاوردهای خلاقانه دانش‌آموزان مدرسه نگاه نو در زمینه‌های هنر، علم و فناوری.">
+    <meta name="keywords" content="نمایشگاه پرگار, مدرسه نگاه نو, دانش‌آموزان, خلاقیت, هنر, علم, فناوری">
+    <meta name="author" content="مدرسه نگاه نو">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="هفتمین دورهی نمایشگاه دانش‌آموزی پرگار">
+    <meta property="og:description" content="نمایش دستاوردهای خلاقانه دانش‌آموزان مدرسه نگاه نو، 13 تا 15 اردیبهشت 1404.">
+    <meta property="og:image" content="images/Pargar.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="نمایشگاه پرگار - نگاه نو">
+    <meta name="twitter:description" content="نمایش دستاوردهای خلاقانه دانش‌آموزان مدرسه نگاه نو، 13 تا 15 اردیبهشت 1404.">
+    <meta name="twitter:image" content="images/Pargar.jpg">
+    <title>نمایشگاه پرگار - نگاه نو</title>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/vazir-font@27.2.0/dist/font-face.css" as="style">
+    <link href="https://cdn.jsdelivr.net/npm/vazir-font@27.2.0/dist/font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', sans-serif;
+        }
+        body {
+            background: linear-gradient(to bottom, #f5f5f5, #e6e1f5);
+            color: #333;
+            direction: rtl;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+        }
+        .navbar a {
+            color: #6A0DAD;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .navbar a:hover {
+            color: #2E1A47;
+            transform: scale(1.1);
+        }
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            color: #1A1A1A;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu {
+            display: block;
+            visibility: hidden;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 60%;
+            height: 100vh;
+            background: #fff;
+            padding: 60px 20px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 99;
+            transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        .mobile-menu.active {
+            visibility: visible;
+            right: 0;
+            opacity: 1;
+        }
+        .close-btn {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 40px;
+            font-size: 24px;
+            color: #1A1A1A;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .close-btn:hover {
+            transform: scale(1.1);
+        }
+        .mobile-menu a {
+            color: #6A0DAD;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 20px 0;
+            text-align: right;
+            transition: transform 0.4s ease, opacity 0.4s ease, color 0.3s ease;
+            transform: translateX(30px);
+            opacity: 0;
+            display: block;
+            width: 100%;
+        }
+        .mobile-menu.active a {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active a:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active a:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu.active a:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu.active a:nth-child(5) { transition-delay: 0.5s; }
+        .mobile-menu.active a:nth-child(6) { transition-delay: 0.6s; }
+        .mobile-menu a:hover {
+            color: #2E1A47;
+            transform: translateX(-5px);
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('images/layered-peaks-haikei.svg') no-repeat center bottom / cover;
+            color: #fff;
+            overflow: hidden;
+        }
+        .hero-content {
+            margin-bottom: 200px;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #2E1A47;
+            animation: fadeInScale 1.5s ease-in;
+        }
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #2E1A47;
+            animation: fadeInScale 2s ease-in;
+        }
+        .btn {
+            background: #6A0DAD;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInScale 2.5s ease-in;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(106, 13, 173, 0.5);
+        }
+        .section {
+            padding: 50px;
+            text-align: center;
+            background: #fff;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.8s ease-in-out;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #2E1A47;
+        }
+        .section p {
+            line-height: 2.2;
+        }
+        .about {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .about-content {
+            flex: 1;
+            text-align: right;
+        }
+        .about .social-icons {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: #6A0DAD;
+            font-size: 20px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icons a:hover {
+            color: #2E1A47;
+            transform: scale(1.2);
+        }
+        @media (min-width: 769px) {
+            .about {
+                flex-direction: column;
+                align-items: center;
+            }
+            .about > h2 {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .about > div {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                gap: 30px;
+                justify-content: center;
+            }
+            .about-image {
+                order: 2;
+                max-width: 40%;
+                flex: 0 0 40%;
+            }
+            .about-content {
+                order: 1;
+                flex: 1;
+                text-align: right;
+            }
+        }
+        @media (max-width: 768px) {
+            .about {
+                text-align: center;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .about-image {
+                justify-content: center;
+            }
+            .about-image img {
+                max-width: 80%;
+                margin-bottom: 20px;
+            }
+            .about-content {
+                text-align: center;
+            }
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .gallery-grid .gallery-item {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+        .gallery-grid .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .gallery-grid .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .popup-content img {
+            max-width: 100%;
+            max-height: 60vh;
+            border-radius: 10px;
+        }
+        .popup-content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .popup-content .close:hover {
+            background: #6A0DAD;
+            transform: scale(1.1);
+        }
+        .popup-content .close i {
+            font-size: 20px;
+            color: #2E1A47;
+        }
+        .popup-content .close:hover i {
+            color: white;
+        }
+        .popup-content .prev, .popup-content .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .popup-content .prev:hover, .popup-content .next:hover {
+            background: #6A0DAD;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .popup-content .prev i, .popup-content .next i {
+            font-size: 20px;
+            color: #2E1A47;
+        }
+        .popup-content .prev:hover i, .popup-content .next:hover i {
+            color: white;
+        }
+        .popup-content .prev { left: 20px; }
+        .popup-content .next { right: 20px; }
+        .news-item {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+        .news-item p {
+            line-height: 2.2;
+        }
+        .schedule-table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #6A0DAD;
+            padding: 10px;
+            text-align: center;
+        }
+        .schedule-table th {
+            background: #6A0DAD;
+            color: #fff;
+        }
+        .map iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background: linear-gradient(to bottom, #2E1A47, #3E2A5A);
+            padding: 40px;
+            text-align: center;
+            color: #fff;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .footer .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer .contact-info {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .footer h5 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .footer p {
+            font-size: 16px;
+            line-height: 2.2;
+        }
+        .footer .copyright {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .navbar {
+                justify-content: flex-end;
+            }
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 18px; }
+            .section { padding: 30px; }
+            .popup-content { max-width: 90%; }
+            .footer .footer-content { flex-direction: column; align-items: center; }
+            .footer .contact-info { text-align: center; }
+            .mobile-menu { background: #fff; }
+            .mobile-menu a { color: #6A0DAD; text-shadow: none; }
+            .mobile-menu a:hover { color: #2E1A47; }
+            .close-btn { display: block; }
+        }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "نمایشگاه پرگار - هفتمین دوره",
+        "description": "نمایش دستاوردهای خلاقانه دانش‌آموزان مدرسه نگاه نو در زمینه‌های هنر، علم و فناوری.",
+        "startDate": "1404-02-13",
+        "endDate": "1404-02-15",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+            "@type": "Place",
+            "name": "مدرسه نگاه نو",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "بلوار فردوس، خیابان رامین جنوبی، کوچه سروی، پلاک 16",
+                "addressLocality": "تهران",
+                "addressCountry": "IR"
+            }
+        },
+        "organizer": {
+            "@type": "Organization",
+            "name": "مدرسه نگاه نو",
+            "url": "https://yourwebsite.com"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#home" aria-label="برو به صفحه اصلی">خانه</a>
+            <a href="#about" aria-label="برو به بخش درباره">درباره</a>
+            <a href="#gallery" aria-label="برو به گالری آثار">گالری</a>
+            <a href="#schedule" aria-label="برو به برنامه نمایشگاه">برنامه</a>
+            <a href="#news" aria-label="برو به اخبار">اخبار</a>
+            <a href="#contact" aria-label="برو به تماس با ما">تماس</a>
+        </div>
+        <div class="hamburger" role="button" aria-label="باز کردن منو" tabindex="0">
+            <i class="fas fa-bars open-icon"></i>
+            <i class="fas fa-times close-icon" style="display: none;"></i>
+        </div>
+        <div class="mobile-menu">
+            <span class="close-btn" role="button" aria-label="بستن منو" tabindex="0">
+                <i class="fas fa-times"></i>
+            </span>
+            <a href="#home" aria-label="برو به صفحه اصلی">خانه</a>
+            <a href="#about" aria-label="برو به بخش درباره">درباره</a>
+            <a href="#gallery" aria-label="برو به گالری آثار">گالری</a>
+            <a href="#schedule" aria-label="برو به برنامه نمایشگاه">برنامه</a>
+            <a href="#news" aria-label="برو به اخبار">اخبار</a>
+            <a href="#contact" aria-label="برو به تماس با ما">تماس</a>
+        </div>
+    </nav>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>نمایشگاه پرگار - هفتمین دوره</h1>
+            <p>نمایش دستاوردهای خلاقانه دانش‌آموزان مدرسه نگاه نو</p>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section id="about" class="section about">
+        <h2>درباره نمایشگاه پرگار</h2>
+        <div class="about-content-container">
+            <div class="about-image">
+                <img src="images/Pargar.jpg" alt="تصویر نمای کلی از نمایشگاه پرگار در مدرسه نگاه نو" loading="lazy">
+            </div>
+            <div class="about-content">
+                <p>نمایشگاه پرگار، که اکنون به هفتمین دوره خود رسیده است، یکی از مهم‌ترین رویدادهای فرهنگی و آموزشی مجتمع آموزشی نگاه نو به شمار می‌رود. این نمایشگاه با هدف نمایش خلاقیت، نوآوری و استعدادهای دانش‌آموزان دوره اول برگزار می‌شود و فرصتی است تا دانش‌آموزان بتوانند دستاوردهای خود را در زمینه‌های مختلف از جمله هنر، علم، فناوری و کاردستی به نمایش بگذارند.</p>
+                <p>هر ساله، دانش‌آموزان با هدایت معلمان و مربیان خود، پروژه‌هایی خلاقانه و منحصربه‌فرد خلق می‌کنند که نه تنها نشان‌دهنده مهارت‌های آن‌هاست، بلکه بیانگر نگاه نو و ذهن خلاقشان به مسائل مختلف است. نمایشگاه پرگار از سال 1397 آغاز شده و هر سال با استقبال بی‌نظیر والدین، دانش‌آموزان و جامعه آموزشی روبه‌رو شده است.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/negaah_e_no/" aria-label="اینستاگرام مدرسه نگاه نو"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/negaah_e_no" aria-label="تلگرام مدرسه نگاه نو"><i class="fab fa-telegram-plane"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="gallery" class="section gallery">
+        <h2>گالری آثار</h2>
+        <div class="gallery-grid" id="gallery-grid">
+            <div class="gallery-item" data-id="1" role="button" aria-label="مشاهده تصویر 1">
+                <img src="images/Photo1.jpg" alt="اثر هنری دانش‌آموزان - تصویر 1" loading="lazy">
+            </div>
+            <div class="gallery-item" data-id="2" role="button" aria-label="مشاهده تصویر 2">
+                <img src="images/Photo2.jpg" alt="اثر هنری دانش‌آموزان - تصویر 2" loading="lazy">
+            </div>
+            <div class="gallery-item" data-id="3" role="button" aria-label="مشاهده تصویر 3">
+                <img src="images/Photo3.jpg" alt="اثر هنری دانش‌آموزان - تصویر 3" loading="lazy">
+            </div>
+            <div class="gallery-item" data-id="4" role="button" aria-label="مشاهده تصویر 4">
+                <img src="images/Photo4.jpg" alt="اثر هنری دانش‌آموزان - تصویر 4" loading="lazy">
+            </div>
+            <div class="gallery-item" data-id="5" role="button" aria-label="مشاهده تصویر 5">
+                <img src="images/Photo5.jpg" alt="اثر هنری دانش‌آموزان - تصویر 5" loading="lazy">
+            </div>
+            <div class="gallery-item" data-id="6" role="button" aria-label="مشاهده تصویر 6">
+                <img src="images/Photo6.jpg" alt="اثر هنری دانش‌آموزان - تصویر 6" loading="lazy">
+            </div>
+            <div class="gallery-item" data-id="7" role="button" aria-label="مشاهده تصویر 7">
+                <img src="images/Photo7.jpg" alt="اثر هنری دانش‌آموزان - تصویر 7" loading="lazy">
+            </div>
+            <div class="gallery-item" data-id="8" role="button" aria-label="مشاهده تصویر 8">
+                <img src="images/Photo8.jpg" alt="اثر هنری دانش‌آموزان - تصویر 8" loading="lazy">
+            </div>
+        </div>
+    </section>
+    <div class="popup" id="popup" role="dialog" aria-label="پنجره نمایش تصویر">
+        <div class="popup-content">
+            <span class="close" role="button" aria-label="بستن پنجره" tabindex="0">
+                <i class="fas fa-times"></i>
+            </span>
+            <span class="prev" role="button" aria-label="تصویر قبلی" tabindex="0">
+                <i class="fas fa-chevron-right"></i>
+            </span>
+            <img id="popup-image" src="" alt="تصویر گالری" loading="lazy">
+            <span class="next" role="button" aria-label="تصویر بعدی" tabindex="0">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+        </div>
+    </div>
+    <section id="schedule" class="section schedule">
+        <h2>برنامه نمایشگاه</h2>
+        <table class="schedule-table">
+            <tr>
+                <th>روز</th>
+                <th>تاریخ</th>
+                <th>ساعات بازدید</th>
+                <th>رویداد ویژه</th>
+            </tr>
+            <tr>
+                <td>شنبه</td>
+                <td>13 اردیبهشت 1404</td>
+                <td>9:00 - 17:00</td>
+                <td>مراسم افتتاحیه</td>
+            </tr>
+            <tr>
+                <td>یک‌شنبه</td>
+                <td>14 اردیبهشت 1404</td>
+                <td>9:00 - 17:00</td>
+                <td>کارگاه خلاقیت</td>
+            </tr>
+            <tr>
+                <td>دوشنبه</td>
+                <td>15 اردیبهشت 1404</td>
+                <td>9:00 - 15:00</td>
+                <td>مراسم اختتامیه</td>
+            </tr>
+        </table>
+    </section>
+    <section id="news" class="section news">
+        <h2>اخبار و به‌روزرسانی‌ها</h2>
+        <div id="news-items">
+            <div class="news-item">
+                <h3>افتتاحیه نمایشگاه</h3>
+                <p>نمایشگاه پرگار با مراسم افتتاحیه‌ای باشکوه در روز شنبه آغاز شد.</p>
+            </div>
+            <div class="news-item">
+                <h3>کارگاه خلاقیت</h3>
+                <p>روز دوشنبه کارگاه خلاقیت برای دانش‌آموزان برگزار می‌شود.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="section contact">
+        <h2>تماس با ما</h2>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.071238346059!2d51.31212831520994!3d35.73622798018298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e06f8c8e8f8f1%3A0x1b2b3c4d5e6f7a8b!2sFerdows%20Blvd%2C%20Tehran%2C%20Iran!5e0!3m2!1sen!2s!4v1698765432109" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" aria-label="نقشه مکان مدرسه نگاه نو"></iframe>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h5>دبیرستان دوره اول</h5>
+                <p>تلفن: 44002078 - 44002077</p>
+                <p>آدرس: بلوار فردوس، خیابان رامین جنوبی، کوچه سروی، پلاک 16</p>
+                <p>ایمیل: info@negaaheno.ir</p>
+            </div>
+            <div class="contact-info">
+                <h5>دبیرستان دوره دوم</h5>
+                <p>تلفن: 44020395 - 44020648</p>
+                <p>آدرس: آیت‌الله کاشانی، خیابان سلیمی جهرمی، کوچه نسترن شرقی، پلاک 5</p>
+                <p>ایمیل: info@negaaheno.ir</p>
+            </div>
+        </div>
+        <p class="copyright">© 1404 نمایشگاه پرگار - تمامی حقوق محفوظ است.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS("particles-js", {
+                    particles: {
+                        number: { value: 30, density: { enable: true, value_area: 800 } },
+                        color: { value: "#6A0DAD" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.2, random: true },
+                        size: { value: 3, random: true },
+                        move: { enable: true, speed: 0.5, direction: "none", random: true }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+                        modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+                    }
+                });
+            } else {
+                console.warn("particlesJS not loaded. Skipping particle animation.");
+            }
+        });
+        document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < window.innerHeight * 0.8) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+        const galleryData = [
+            { id: 1, src: "images/Photo1.jpg", alt: "اثر هنری دانش‌آموزان - تصویر 1" },
+            { id: 2, src: "images/Photo2.jpg", alt: "اثر هنری دانش‌آموزان - تصویر 2" },
+            { id: 3, src: "images/Photo3.jpg", alt: "اثر هنری دانش‌آموزان - تصویر 3" },
+            { id: 4, src: "images/Photo4.jpg", alt: "اثر هنری دانش‌آموزان - تصویر 4" },
+            { id: 5, src: "images/Photo5.jpg", alt: "اثر هنری دانش‌آموزان - تصویر 5" },
+            { id: 6, src: "images/Photo6.jpg", alt: "اثر هنری دانش‌آموزان - تصویر 6" },
+            { id: 7, src: "images/Photo7.jpg", alt: "اثر هنری دانش‌آموزان - تصویر 7" },
+            { id: 8, src: "images/Photo8.jpg", alt: "اثر هنری دانش‌آموزان - تصویر 8" }
+        ];
+        let currentImageIndex = 0;
+        function openPopup(id) {
+            currentImageIndex = galleryData.findIndex(item => item.id === id);
+            const popup = document.getElementById('popup');
+            const popupImage = document.getElementById('popup-image');
+            popupImage.src = galleryData[currentImageIndex].src;
+            popupImage.alt = galleryData[currentImageIndex].alt;
+            popup.style.display = 'flex';
+        }
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = galleryData.length - 1;
+            if (currentImageIndex >= galleryData.length) currentImageIndex = 0;
+            const popupImage = document.getElementById('popup-image');
+            popupImage.src = galleryData[currentImageIndex].src;
+            popupImage.alt = galleryData[currentImageIndex].alt;
+        }
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => openPopup(parseInt(item.dataset.id)));
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    openPopup(parseInt(item.dataset.id));
+                }
+            });
+        });
+        document.querySelector('.popup .close').addEventListener('click', closePopup);
+        document.querySelector('.popup .prev').addEventListener('click', () => changeImage(-1));
+        document.querySelector('.popup .next').addEventListener('click', () => changeImage(1));
+        document.querySelector('.popup .close').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') closePopup();
+        });
+        document.querySelector('.popup .prev').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') changeImage(-1);
+        });
+        document.querySelector('.popup .next').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') changeImage(1);
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeBtn = document.querySelector('.close-btn');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            hamburger.querySelector('.open-icon').style.display = hamburger.classList.contains('active') ? 'none' : 'inline';
+            hamburger.querySelector('.close-icon').style.display = hamburger.classList.contains('active') ? 'inline' : 'none';
+        });
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                mobileMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+                hamburger.querySelector('.open-icon').style.display = hamburger.classList.contains('active') ? 'none' : 'inline';
+                hamburger.querySelector('.close-icon').style.display = hamburger.classList.contains('active') ? 'inline' : 'none';
+            }
+        });
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            hamburger.querySelector('.open-icon').style.display = 'inline';
+            hamburger.querySelector('.close-icon').style.display = 'none';
+        });
+        closeBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.querySelector('.open-icon').style.display = 'inline';
+                hamburger.querySelector('.close-icon').style.display = 'none';
+            }
+        });
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.querySelector('.open-icon').style.display = 'inline';
+                hamburger.querySelector('.close-icon').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
